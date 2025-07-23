@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Prasad Rathod - DevOps Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #1a1a1a;
+      --text: #ffffff;
+      --accent: #ff5f00;
+      --muted: #cccccc;
+      --highlight: rgba(255,95,0,0.2);
+    }
+    * {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    }
+    nav {
+      background: var(--card);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100vh;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      box-shadow: 0 0 20px var(--accent);
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    main {
+      padding: 30px;
+      margin-left: 270px;
+      background-image: linear-gradient(to bottom, #0d0d0d, #1f1f1f);
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 64px;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+    .quote-banner {
+      background: var(--card);
+      border-left: 5px solid var(--accent);
+      padding: 15px 25px;
+      margin: 20px auto 40px;
+      font-size: 20px;
+      text-align: center;
+      font-style: italic;
+      color: var(--muted);
+      max-width: 700px;
+      box-shadow: 0 0 15px rgba(255,95,0,0.2);
+    }
+    .section {
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-in-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      font-size: 32px;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      border-left: 4px solid var(--accent);
+      padding-left: 15px;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .skills li {
+      list-style: none;
+      background: var(--card);
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 0 5px rgba(255, 95, 0, 0.3);
+    }
+    .skills li:hover {
+      background: var(--highlight);
+      transform: translateY(-3px);
+    }
+    .project-card {
+      background: var(--card);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(255,95,0,0.1);
+      transition: 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,95,0,0.1);
+    }
+    .project-card p {
+      margin: 10px 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .timeline {
+      margin: 40px 0;
+      border-left: 3px solid var(--accent);
+      padding-left: 25px;
+      position: relative;
+    }
+    .timeline-entry {
+      margin-bottom: 25px;
+    }
+    .timeline-entry h4 {
+      color: var(--accent);
+      margin: 0 0 5px;
+    }
+    .timeline-entry p {
+      color: var(--muted);
+      margin: 0;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--highlight);
+      color: var(--accent);
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      margin: 5px;
+      box-shadow: 0 0 8px rgba(255,95,0,0.2);
+    }
+    .qr-graphic {
+      background: linear-gradient(to bottom right, #1f1f1f, #333333);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(255,95,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      margin: 20px auto;
+    }
+    .qr-graphic img {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 10px rgba(255,95,0,0.3));
+    }
+    .fab-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .fab-button:hover {
+      background-color: #e65300;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="#cv">Download CV</a>
+  </nav>
+  <main>
+    <header>
+      <h1>Sai Prasad Rathod</h1>
+      <p>DevOps Engineer | Cloud | Automation | CI/CD</p>
+    </header>
+    <div class="quote-banner">
+      "The only way to do great work is to love what you do." — Steve Jobs
+    </div>
+    <section id="about" class="section">
+      <div class="section-title">About Me</div>
+      <p>I’m a passionate DevOps Engineer with a strong foundation in AWS, automation, and containerized infrastructure. I enjoy building secure, scalable systems and collaborating across teams to accelerate delivery.</p>
+    </section>
+    <section id="skills" class="section">
+      <div class="section-title">Skills</div>
+      <ul class="skills">
+        <li><i class="fab fa-aws"></i> AWS</li>
+        <li><i class="fab fa-docker"></i> Docker</li>
+        <li><i class="fab fa-kubernetes"></i> Kubernetes</li>
+        <li><i class="fas fa-code"></i> Terraform</li>
+        <li><i class="fas fa-server"></i> Jenkins</li>
+        <li><i class="fab fa-github"></i> GitHub</li>
+        <li><i class="fas fa-chart-line"></i> Prometheus</li>
+        <li><i class="fab fa-linux"></i> Linux</li>
+      </ul>
+    </section>
+    <section class="section">
+      <div class="section-title">Career Overview</div>
+      <div class="timeline">
+        <div class="timeline-entry">
+          <h4>🎓 Graduation</h4>
+          <p>Completed Bachelor of Technology from Gurunanak Institutions of Technical Campus in August 2020 with an aggregate of 65%.</p>
+        </div>
+        <div class="timeline-entry">
+          <h4>👨‍💻 Internship</h4>
+          <p>Worked as a DevOps Intern at CloudSphere Technologies from July to October 2020, gaining hands-on experience with AWS services (EC2, S3, IAM) and basic Linux server management, while assisting in real-time infrastructure deployments.</p>
+        </div>
+        <div class="timeline-entry">
+          <h4>🚀 DevOps Engineer</h4>
+          <p>Working as a DevOps Engineer at Sparkviz Technologies since October 2020, contributing to large-scale AWS automation and CI/CD transformation projects by architecting EKS infrastructure, implementing Jenkins and Terraform pipelines, optimizing Kubernetes resource usage, and integrating real-time monitoring with Prometheus and Grafana, resulting in faster deployments, reduced costs, and improved system reliability.</p>
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="section">
+      <div class="section-title">Projects</div>
+      <div class="project-card">
+        <strong>AWS Cloud Automation Platform</strong>
+        <p>🚀 Built secure and scalable AWS infrastructure using EKS, Terraform, and IAM automation.</p>
+        <p>📦 Developed reusable Terraform modules and implemented autoscaling groups.</p>
+        <p>🔐 Managed role-based IAM access and enabled audit logging across services.</p>
+        <span class="badge">Cloud</span>
+        <span class="badge">IaC</span>
+        <span class="badge">Terraform</span>
+      </div>
+      <div class="project-card">
+        <strong>CI/CD Pipeline Transformation</strong>
+        <p>🔄 Migrated legacy pipelines to Jenkins-based automated pipelines.</p>
+        <p>📁 Integrated GitHub versioning and container builds for microservices.</p>
+        <p>📊 Enabled full observability with Prometheus, Grafana, and Slack alerts.</p>
+        <span class="badge">CI/CD</span>
+        <span class="badge">Monitoring</span>
+        <span class="badge">Microservices</span>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <div class="section-title">Contact</div>
+      <p>
+        <a href="mailto:saiprasadrathod18@gmail.com" style="color:#ffffff;"><i class="fas fa-envelope fa-2x"></i></a>
+        &nbsp;&nbsp;
+        <a href="https://linkedin.com/in/rathod-sai-prasad-919989351" target="_blank" style="color:#ffffff;"><i class="fab fa-linkedin fa-2x"></i></a>
+      </p>
+    </section>
+    <section id="cv" class="section qr-download">
+      <div class="section-title">Download My CV</div>
+      <div class="qr-graphic">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://example.com/cv.pdf&size=150x150" alt="Download CV QR">
+      </div>
+      <div style="text-align:center;margin-top:10px;">
+        <a href="https://example.com/cv.pdf" download class="badge">Download PDF</a>
+      </div>
+    </section>
+    <section class="section" style="text-align:center;">
+      <h2>🚀 Ready to work together?</h2>
+      <p>Let’s build something scalable, secure, and powerful in the cloud.</p>
+    </section>
+  </main>
+  <button class="fab-button" onclick="scrollToTop()" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
